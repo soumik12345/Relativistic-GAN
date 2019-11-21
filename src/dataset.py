@@ -62,7 +62,7 @@ def get_transforms():
     return transform1, transform2
 
 
-def get_data_loader(transform1, transform2):
+def get_data_loader():
     '''Get DataLoader'''
     transform1, transform2 = get_transforms()
     train_dataset = CustomDataset(
