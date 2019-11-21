@@ -44,7 +44,7 @@ def train(netG, netD, optimizerG, optimizerD, data_loader, device):
             batch_size = real_images.size(0)
             labels = torch.full((batch_size, 1), REAL_LABEL, device=device)
             outputR = netD(real_images)
-            noise = torch.randn(batch_size, nz, 1, 1, device=device)
+            noise = torch.randn(batch_size, LATENT_DIMENSION, 1, 1, device=device)
             fake = netG(noise)
             outputF = netD(fake.detach())
             errD = (torch.mean((outputR - torch.mean(outputF) - labels) ** 2) + 
