@@ -2,6 +2,7 @@ from config import *
 from PIL import Image
 from os import listdir
 from os.path import join
+from matplotlib import pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets, transforms
 from torchvision.transforms import (
