@@ -42,7 +42,7 @@ def train(netG, netD, optimizerG, optimizerD, data_loader, device):
             netD.zero_grad()
             real_images = real_images.to(device)
             batch_size = real_images.size(0)
-            labels = torch.full((batch_size, 1), real_label, device=device)
+            labels = torch.full((batch_size, 1), REAL_LABEL, device=device)
             outputR = netD(real_images)
             noise = torch.randn(batch_size, nz, 1, 1, device=device)
             fake = netG(noise)
