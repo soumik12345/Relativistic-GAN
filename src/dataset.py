@@ -59,3 +59,30 @@ def get_transforms():
         )
     ])
     return transform1, transform2
+
+
+def get_data_loader(transform1, transform2):
+    '''Get DataLoader'''
+    transform1, transform2 = get_transforms()
+    train_dataset = CustomDataset(
+        img_dir = IMAGE_DIRECTORY,
+        transform1 = transform1,
+        transform2 = transform2
+    )
+    train_loader = DataLoader(
+        dataset = train_dataset,
+        batch_size = BATCH_SIZE,
+        shuffle = True,
+        num_workers = 4
+    )
+    return train_loader
+
+
+def visualize(data_loader):
+    '''Visualize Dataset'''
+    imgs = next(iter(data_loader))
+    imgs = imgs.numpy().transpose(0, 2, 3, 1)
+    fig = plt.figure(figsize = (25, 16))
+    for i, img in enumerate(imgs):
+        ax = fig.add_subplot(4, 8, i + 1, xticks = [], yticks = [])
+        plt.imshow((img + 1) / 2)
