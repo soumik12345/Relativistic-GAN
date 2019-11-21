@@ -1,7 +1,27 @@
 import torch, time
-from tqdm import tqdm
 from config import *
 from .utils import *
+from tqdm import tqdm
+from torch.optim import Adam
+
+
+def get_optimizers(netG, netD):
+    '''Get Optimizers
+    Params:
+        netG -> Generator Network
+        netD -> Discriminator Network
+    '''
+    optimizerD = Adam(
+        netD.parameters(),
+        lr=LEARNING_RATE,
+        betas=(BETA_1, 0.999)
+    )
+    optimizerG = Adam(
+        netG.parameters(),
+        lr=LEARNING_RATE,
+        betas=(BETA_1, 0.999)
+    )
+    return optimizerG, optimizerD
 
 
 def train(netG, netD, optimizerG, optimizerD, data_loader, device):
